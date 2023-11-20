@@ -12,14 +12,12 @@ public class MostActiveCookie {
 
 
 /**
- *  In the main, we call on the helper functions to do the following
+ *  In the main, we call on the helper functions to do the following:
  *  1. dataFile method: Read the file data into an ArrayList
  *  2. filterByDate method: Filter out all the cookies that aren't on the specified date
  *  3. Counter method: Create a hashmap that identifies how many times a cookie appears on the specific date
  *  4. frequentCookie method: Finally, we figure out the number of times the most frequent cookie appears, then we identify the cookies that appear at that frequency
  * 
- *  Note, because we are told thst we will be expanding the code in the interview, I have chosen to keep in the commented out print statements
- *  My rationale is that it would be helpful for any on-the-fly testing. These are all indicated with the comment "Debug statement"
 */
 
 public static void main(String args[]) {
@@ -51,6 +49,7 @@ public static void main(String args[]) {
     
       /***
      * Method to parse the file and create an arrayList output
+     * Initializes an ArrayList, File, and Scanner
      */
      
     public static ArrayList<String> dataFile (String fileName) {
@@ -65,7 +64,6 @@ public static void main(String args[]) {
             while (s.hasNextLine()) 
                 {
                     String line = s.nextLine();
-                    //System.out.println("Read line: " + line); // Debug statement
                     fileData.add(line);
                 }
             s.close();
@@ -82,6 +80,7 @@ public static void main(String args[]) {
    
         /***
          *  Method to filter out only the cookies from a select date
+         *  Initializes an ArrayList, 2 SimpleDateFormats, then 2 strings for cookie and date
          */
   
         public static ArrayList<String> filterByDate(ArrayList <String> parsedData, String Date) {
@@ -114,13 +113,14 @@ public static void main(String args[]) {
 
              }
             
-        //System.out.println("Filtered Data: " + filteredByDate); // Debug statement
+    
         return filteredByDate;
 
         }
 
         /***
          *  Helper function to create a HashMap that ties each cookie value to a counter
+         *  Initializes a HashMap
          */
 
         public static HashMap<String, Integer> Counter(ArrayList<String> filteredDate) {
@@ -134,13 +134,14 @@ public static void main(String args[]) {
                 cookieCounter.put(cookie, cookieCounter.getOrDefault(cookie, 0) + 1);
             }
 
-        //System.out.println("Cookie Counts: " + cookieCounter); // Debug statement
+
         return cookieCounter;
 
         }
     
         /***
-         *  Final helper to iterate through the counted cookies HashMap and isolate the cookies with the most frequent timestamps
+         * Final helper to iterate through the counted cookies HashMap and isolate the cookies with the most frequent timestamps
+         * Initializes two counter variables and an ArrayList
          */
     
          public static ArrayList<String> frequentCookie(HashMap<String, Integer> countedCookie) {
@@ -165,7 +166,7 @@ public static void main(String args[]) {
                     maxCount = count;
             }
 
-            // With the max count, find all cookies that have a matching counter value
+            // With the max count, find all cookies that have a matching count value
                  for (HashMap.Entry<String, Integer> entry : countedCookie.entrySet()) {
                         int tally = entry.getValue();
                         
@@ -174,7 +175,6 @@ public static void main(String args[]) {
                          }
                  }
 
-            //System.out.println("Most Frequent Cookies: " + bigCookie); // Debug statement
             return bigCookie;
 
          }
